@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fredoka as Fredoka_One, Inter } from "next/font/google";
 import "./globals.css";
+import PageTransition from "@/components/page-transition";
+import Navbar from "@/components/navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fredokaOne = Fredoka_One({
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-fredoka",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +30,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${fredokaOne.variable} ${inter.variable} antialiased`}>
+        <Navbar />
+        <div className="overflow-x-hidden bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+          <PageTransition>{children}</PageTransition>
+        </div>
       </body>
     </html>
   );
